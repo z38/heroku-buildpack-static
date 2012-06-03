@@ -14,7 +14,11 @@ Use
     $ git commit -m "initial commit"
     $ git push heroku master
 
-Hacking
+Optional Congifuration
+-------
+The Apache configuration file is located in `conf/httpd.conf`. To customize, fork and use your fork as the buildpack url on app create.
+
+Improving
 -------
 
 To test changes to this buildpack, fork it on Github. Push up changes to your fork, then create a test app with --buildpack <your-github-url> and push to it.
