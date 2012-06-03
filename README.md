@@ -1,7 +1,18 @@
-Apache+PHP build pack
+Static build pack
 ========================
 
-This is a build pack bundling PHP and Apache for Heroku apps.
+This is a build pack bundling Apache for the serving of static files from Heroku.
+
+Use
+-------
+
+    $ ls
+    index.html      somedir/
+    $ git init
+    $ heroku create --stack cedar --buildpack https://github.com/pearkes/heroku-buildpack-static
+    $ git add .
+    $ git commit -m "initial commit"
+    $ git push heroku master
 
 Configuration
 -------------
@@ -9,7 +20,6 @@ Configuration
 The config files are bundled with the LP itself:
 
 * conf/httpd.conf
-* conf/php.ini
 
 
 Pre-compiling binaries
@@ -24,9 +34,9 @@ Pre-compiling binaries
     make
     make install
     cd ..
-    
+
     # php
-    wget http://us2.php.net/get/php-5.3.6.tar.gz/from/us.php.net/mirror 
+    wget http://us2.php.net/get/php-5.3.6.tar.gz/from/us.php.net/mirror
     mv mirror php.tar.gz
     tar xzvf php.tar.gz
     cd php-5.3.6/
@@ -34,11 +44,11 @@ Pre-compiling binaries
     make
     make install
     cd ..
-    
+
     # php extensions
     mkdir /app/php/ext
     cp /usr/lib/libmysqlclient.so.15 /app/php/ext/
-    
+
     # pear
     apt-get install php5-dev php-pear
     pear config-set php_dir /app/php
@@ -46,8 +56,8 @@ Pre-compiling binaries
     mkdir /app/php/include/php/ext/apc
     cp /usr/lib/php5/20060613/apc.so /app/php/ext/
     cp /usr/include/php5/ext/apc/apc_serializer.h /app/php/include/php/ext/apc/
-    
-    
+
+
     # package
     cd /app
     echo '2.2.19' > apache/VERSION
@@ -61,9 +71,3 @@ Hacking
 
 To change this buildpack, fork it on Github. Push up changes to your fork, then create a test app with --buildpack <your-github-url> and push to it.
 
-
-Meta
-----
-
-Created by Pedro Belo.
-Many thanks to Keith Rarick for the help with assorted Unix topics :)
